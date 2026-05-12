@@ -24,7 +24,7 @@ _For this programming assignment, I will be splitting up the work into four diff
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
+_Today I implemented Dijkstra and distance precomputation, I ran into a small bug in run_dijkstra as I forgot to push the new distances into the priority queue after updating the new distances. Also ran into small bugs with the initialization of the dictionary in run_dijkstra, and while I didn't think I needed to initialize sources in precompute_distances with the exit_node as well, I found it was required to do so. I also made a slight change to my README Part 2c since I realized that the analysis part of my response was incorrect._
 
 ---
 

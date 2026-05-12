@@ -57,7 +57,7 @@
 - **Number of Dijkstra runs:** _k+1_
 - **Cost per run:** _O(m log n)_
 - **Total complexity:** _O((k+1)m log n)_
-- **Justification (one line):** _Dijkstra will run once from node S to Node T ensuring every relic is visited using a priority queue._
+- **Justification (one line):** _Dijkstra will run once from node S to each relic in M ensuring every relic is visited using a priority queue._
 
 ---
 

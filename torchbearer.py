@@ -20,6 +20,7 @@ Submit this file as: torchbearer.py
 import heapq
 
 
+
 # =============================================================================
 # PART 1
 # =============================================================================
@@ -86,7 +87,29 @@ def run_dijkstra(graph, source):
 
     TODO
     """
-    pass
+
+    dist = dict()
+
+    for node in graph:
+        dist[node] = float('inf')
+
+    dist[source] = 0
+    priority_queue = [(0, source)]
+
+    while priority_queue:
+        current_dist, current_node = heapq.heappop(priority_queue)
+
+        if current_dist > dist[current_node]:
+            continue
+
+        for neighbor, cost in graph[current_node]:
+            distance = current_dist + cost
+
+            if distance < dist[neighbor]:
+                dist[neighbor] = distance
+                heapq.heappush(priority_queue, (distance, neighbor))
+
+    return dist
 
 
 def precompute_distances(graph, spawn, relics, exit_node):
@@ -106,7 +129,15 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+
+    dist_table = dict()
+
+    sources = select_sources(spawn, relics, exit_node)
+
+    for source in sources:
+        dist_table[source] = run_dijkstra(graph, source)
+    
+    return dist_table
 
 
 # =============================================================================
@@ -302,3 +333,4 @@ def _run_tests():
 
 if __name__ == "__main__":
     _run_tests()
+    
