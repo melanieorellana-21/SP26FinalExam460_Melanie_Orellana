@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: ____Melanie Orellana_______________________
+Student ID:   _____130055910______________________
 
 INSTRUCTIONS
 ------------
@@ -34,7 +34,10 @@ def explain_problem():
 
     TODO
     """
-    return "TODO"
+    return (
+        "While a single shortest-path run gives us the paths with the minimum costs, in this problem the torchbearer is also attempting to fingure out in which order to visit the relics as well because different orders may give us a different reult."
+        "The order in which teh torchbearer chooses to visit the relics."
+        "This requires search over orders because different orders of relics can result in different total cost.")
 
 
 # =============================================================================
@@ -56,7 +59,15 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    sources = set()
+
+    sources.add(spawn)
+
+    for relic in relics:
+        sources.add(relic)
+
+
+    return list(sources)
 
 
 def run_dijkstra(graph, source):
@@ -112,7 +123,17 @@ def dijkstra_invariant_check():
 
     TODO
     """
-    return "TODO"
+    return (
+        "Part A:"
+        "These nodes have a shortest-path finalized with minimal cost, therefore their paths are finalized."
+        "These nodes have a version of a shortest-path found but there are still other possibilities that may give us a smaller cost, therefore they are not finalized."
+        "Part B:"
+        "At the start, we are at Node S, it does not take any fuel to be at Node S hence, the total cost is 0 while every other node does not have a definitive cost since we have not started traversing."
+        "Finalizing the mid-dist node is always correct because any other path would require us to add any nonnegative edge weights, furthermore not making this the shortest path."
+        "The invariant guarentees that every node has a shortest-path which has been found once the algoirthm ends."
+        "Part C:"
+        "Having the correct shortest-path is needed because the route planner need accurate calcuations to decide the optimal order of relics which will ultimately lead to total minimum cost."
+    )
 
 
 # =============================================================================
