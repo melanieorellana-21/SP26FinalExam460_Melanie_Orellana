@@ -1,7 +1,7 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** _Melanie Orellana__________________________
+**Student ID:** __130055910_________________________
 **Course:** CS 460 – Algorithms | Spring 2026
 
 > This README is your project documentation. Write it the way a developer would document
@@ -17,13 +17,13 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  _ While a single shortest-path run gives us the paths with the minimum costs, in this problem the torchbearer is also attempting to fingure out in which order to visit the relics as well because different orders may give us a different reult._
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  _The order in which teh torchbearer chooses to visit the relics_
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
+  _This requires search over orders because different orders of relics can result in different total cost._
 
 ---
 
@@ -35,8 +35,8 @@
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| _Start Node S_ | _The algorithm needs a start node in order to compute the shortest-path from a starting point._ |
+| _Relic nodes in M_ | _One of the requirments have us visit every relic in M and we must see which paths produce the shortest-path with minimal cost._ |
 
 ### Part 2b: Distance Storage
 
@@ -44,20 +44,20 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | hash map |
+| What the keys represent | (u,v) important nodes to take into account |
+| What the values represent | the minimum cost from u to v |
+| Lookup time complexity | O(1) |
+| Why O(1) lookup is possible | hash tables allow for direct access to keys |
 
 ### Part 2c: Precomputation Complexity
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** _k+1_
+- **Cost per run:** _O(m log n)_
+- **Total complexity:** _O((k+1)m log n)_
+- **Justification (one line):** _Dijkstra will run once from node S to Node T ensuring every relic is visited using a priority queue._
 
 ---
 
@@ -72,29 +72,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  _These nodes have a shortest-path finalized with minimal cost, therefore their paths are finalized._
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  _These nodes have a version of a shortest-path found but there are still other possibilities that may give us a smaller cost, therefore they are not finalized._
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  _At the start, we are at Node S, it does not take any fuel to be at Node S hence, the total cost is 0 while every other node does not have a definitive cost since we have not started traversing._
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  _Finalizing the mid-dist node is always correct because any other path would require us to add any nonnegative edge weights, furthermore not making this the shortest path. _
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  _The invariant guarentees that every node has a shortest-path which has been found once the algoirthm ends._
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+_Having the correct shortest-path is needed because the route planner need accurate calcuations to decide the optimal order of relics which will ultimately lead to total minimum cost._
 
 ---
 
