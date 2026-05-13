@@ -181,7 +181,11 @@ def explain_search():
 
     TODO
     """
-    return "TODO"
+    return "T- **The failure mode:** _Greedy fails, while greedy calculates the shortest-path from every relic to the start node, the order that we choose to visit the relics later can result in a cheaper cost._"
+"- **Counter-example setup:** _Suppse the torchbearer starts at node S and must visit relics B, C, and D before reaching the exit-node T. S -> B costs 2, S -> C costs 5, and S-> D costs 2._"
+"- **What greedy picks:** _Greedy will choose the relic with the currect cheapest path._"
+"- **What optimal picks:** _The optimal solution might pick D because it can produce a overall lower cost._"
+"- **Why greedy loses:** _Greedy only considers local decsions while the optimal solution can later produce cheapper routes by making decsions for routes later considering every possibility and ultimately choosing the cheapest path._"
 
 
 # =============================================================================
@@ -208,7 +212,19 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    best_order = [float('inf'), []]
+
+
+    relics_remaining = set(relics)
+
+    visited_order = []
+
+    _explore(dist_table, spawn, relics_remaining, visited_order, 0, exit_node, best_order)
+
+    if best_order[0] == float('inf'):
+        return (float('inf'), [])
+    
+    return  (best_order[0], best_order[1])
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -240,7 +256,40 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+
+    if not relics_remaining:
+        tot_cost = cost_so_far + dist_table[current_loc][exit_node]
+
+        if exit_node not in dist_table[current_loc] or tot_cost < best[0]:
+                best[0] = tot_cost
+                best[1] = relics_visited_order.copy()
+
+        tot_cost = cost_so_far + dist_table[current_loc][exit_node]
+
+        if tot_cost < best[0]:
+            best[0] = tot_cost
+            best[1] = relics_visited_order.copy()
+        
+        return
+    
+    for relic in relics_remaining:
+        new_cost = cost_so_far + dist_table[current_loc][relic]
+
+        #Pruning: if the cost to the next relic is greater than the cost found previously, we can safely skip exploring this path since a shorter path cannot be found. If we were to explore this path then we would be adding more to the paths cost thus it would not be optimal.
+        if relic not in dist_table[current_loc] or new_cost >= best[0]:
+           continue
+
+        relics_remaining.remove(relic)
+        relics_visited_order.append(relic)
+
+        _explore(dist_table, relic, relics_remaining, relics_visited_order,
+                 new_cost, exit_node, best)
+        
+        
+        relics_visited_order.pop()
+        relics_remaining.add(relic)
+
+        
 
 
 # =============================================================================
@@ -332,5 +381,21 @@ def _run_tests():
 
 
 if __name__ == "__main__":
-    _run_tests()
-    
+    #_run_tests()
+    if __name__ == "__main__":
+     dist_table = {
+        "S": {"B": 1, "C": 2, "D": 2, "T": float("inf")},
+        "B": {"B": 0, "C": 100, "D": 1, "T": 1},
+        "C": {"B": 1, "C": 0, "D": 100, "T": 1},
+        "D": {"B": 1, "C": 1, "D": 0, "T": 100},
+    }
+
+    spawn = "S"
+    relics = ["B", "C", "D"]
+    exit_node = "T"
+
+    result = find_optimal_route(dist_table, spawn, relics, exit_node)
+
+    print("Result:", result)
+    print("Expected cost: 4")
+    print("Expected order: ['B', 'D', 'C']")

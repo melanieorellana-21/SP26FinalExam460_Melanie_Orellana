@@ -105,17 +105,17 @@ _Having the correct shortest-path is needed because the route planner need accur
 > State the failure mode. Then give a concrete counter-example using specific node names
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** _Greedy fails, while greedy calculates the shortest-path from every relic to the start node, the order that we choose to visit the relics later can result in a cheaper cost._
+- **Counter-example setup:** _Suppse the torchbearer starts at node S and must visit relics B, C, and D before reaching the exit-node T. S -> B costs 2, S -> C costs 5, and S-> D costs 2._
+- **What greedy picks:** _Greedy will choose the relic with the currect cheapest path._
+- **What optimal picks:** _The optimal solution might pick D because it can produce a overall lower cost._
+- **Why greedy loses:** _Greedy only considers local decsions while the optimal solution can later produce cheapper routes by making decsions for routes later considering every possibility and ultimately choosing the cheapest path._
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _Your answer here._
+- _The algorithm must expolor every order possible that ultimately chooses the route with the cheapest cost possible._
 
 ---
 
@@ -128,9 +128,9 @@ _Having the correct shortest-path is needed because the route planner need accur
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | current_loc | node | This is the node that the torchbearer is currently searching. |
+| Relics already collected | relics_visited_order | list[node] | The order of the current visted relics |
+| Fuel cost so far | cost_so_far | float | The total cost so far. |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -138,18 +138,18 @@ _Having the correct shortest-path is needed because the route planner need accur
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | set |
+| Operation: check if relic already collected | Time complexity: O(1) |
+| Operation: mark a relic as collected | Time complexity: O(1) |
+| Operation: unmark a relic (backtrack) | Time complexity: O(1) |
+| Why this structure fits | This structure allows us to add remove and check each relic quickly making it easier when backtracking. |
 
 ### Part 5c: Worst-Case Search Space
 
 > Two bullets.
 
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
-- **Why:** _One-line justification._
+- **Worst-case number of orders considered:** _k!_
+- **Why:** _This would be the worst-case causing the search compute the cost for every possible order of the relics._
 
 ---
 
@@ -159,23 +159,25 @@ _Having the correct shortest-path is needed because the route planner need accur
 
 > Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** _This tracks the current shortest-path._
+- **When it is used:** _This is used when a new shortest-path is found to then remove the old relic and add the new relic which creates a new shorter path._
+- **What it allows the algorithm to skip:** _It allows the algorithm to skip over relics that already have been proven to result in a higher cost than the current shortest-path, therefore we do not have to repeatedly search through every relic._
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** _current location, current cost, precomputed shortes-path, and relics remaining._
+- **What the lower bound accounts for:** _Lower bound accounts for an estimate of the minimum cost that will be added from the remaining relics needed to be visited._
+- **Why it never overestimates:** _The lower bound utilizes the precomputed shortest-path therefore the resulting route cannot be less than the estimate._
 
 ### Part 6c: Pruning Correctness
 
 > One to two bullets. Explain why pruning is safe.
 
-- _Your answer here._
+- If the cost to the next relic is greater than the cost found previously, we can safely skip exploring this path since a shorter path cannot be found.
+- If we were to explore this path then we would be adding more to the paths cost thus it would not be optimal.
+_
 
 ---
 
@@ -183,4 +185,4 @@ _Having the correct shortest-path is needed because the route planner need accur
 
 > Bullet list. If none beyond lecture notes, write that.
 
-- _Your references here._
+- _None beyond lecture notes._

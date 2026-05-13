@@ -30,7 +30,7 @@ _Today I implemented Dijkstra and distance precomputation, I ran into a small bu
 
 ## Entry 3 – [Date]: [Short description]
 
-_Your entry here._
+_Today I implemented find_optimal_route() and _explore(). I ran into problems with the final route not updating correctly, I attempted to store min_cost and best_order seperatly but found it was better to use a mutable container which ultimatley allowed for the final route to be stored correctly. I also ran into a bug when I was storing distances in the wrong direction so instead of dist_table[current_loc][exit_node] I was doing the oppisite. Today I figured out how the backtracking would work in terms of tracking the current relic, remaining relics, visited order, and total cost. I also completed the explain_search() in torchbearer.py._
 
 ---
 
