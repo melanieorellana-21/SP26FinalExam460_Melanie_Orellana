@@ -17,10 +17,10 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _ While a single shortest-path run gives us the paths with the minimum costs, in this problem the torchbearer is also attempting to fingure out in which order to visit the relics as well because different orders may give us a different reult._
+  _ While a single shortest-path run gives us the paths with the minimum costs, in this problem, the torchbearer is also attempting to figure out in which order to visit the relics as well, because different orders may give us a different result._
 
 - **What decision remains after all inter-location costs are known:**
-  _The order in which teh torchbearer chooses to visit the relics_
+  _The order in which the torchbearer chooses to visit the relics_
 
 - **Why this requires a search over orders (one sentence):**
   _This requires search over orders because different orders of relics can result in different total cost._
@@ -72,29 +72,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _These nodes have a shortest-path finalized with minimal cost, therefore their paths are finalized._
+  _These nodes have a shortest-path finalized with minimal cost; their paths are finalized._
 
 - **For nodes not yet finalized (not in S):**
-  _These nodes have a version of a shortest-path found but there are still other possibilities that may give us a smaller cost, therefore they are not finalized._
+  _These nodes have a version of the shortest path found, but there are still other possibilities that may give us a smaller cost; they are not finalized._
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _At the start, we are at Node S, it does not take any fuel to be at Node S hence, the total cost is 0 while every other node does not have a definitive cost since we have not started traversing._
+  _At the start, we are at Node S. It does not take any fuel to be at Node S; hence, the total cost is 0, while every other node does not have a definitive cost since we have not started traversing._
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Finalizing the mid-dist node is always correct because any other path would require us to add any nonnegative edge weights, furthermore not making this the shortest path. _
+  _Finalizing the mid-dist node is always correct because any other path would require us to add any nonnegative edge weights, and furthermore, not make this the shortest path. _
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _The invariant guarentees that every node has a shortest-path which has been found once the algoirthm ends._
+  _The invariant guarantees that every node has a shortest-path which has been found once the algorithm ends._
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Having the correct shortest-path is needed because the route planner need accurate calcuations to decide the optimal order of relics which will ultimately lead to total minimum cost._
+_Having the correct shortest-path is needed because the route planner needs accurate calculations to decide the optimal order of relics, which will ultimately lead to the total minimum cost._
 
 ---
 
@@ -106,16 +106,16 @@ _Having the correct shortest-path is needed because the route planner need accur
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
 - **The failure mode:** _Greedy fails, while greedy calculates the shortest-path from every relic to the start node, the order that we choose to visit the relics later can result in a cheaper cost._
-- **Counter-example setup:** _Suppse the torchbearer starts at node S and must visit relics B, C, and D before reaching the exit-node T. S -> B costs 2, S -> C costs 5, and S-> D costs 2._
+- **Counter-example setup:** _Suppose the torchbearer starts at node S and must visit relics B, C, and D before reaching the exit-node T. S -> B costs 2, S -> C costs 5, and S-> D costs 2._
 - **What greedy picks:** _Greedy will choose the relic with the currect cheapest path._
 - **What optimal picks:** _The optimal solution might pick D because it can produce a overall lower cost._
-- **Why greedy loses:** _Greedy only considers local decsions while the optimal solution can later produce cheapper routes by making decsions for routes later considering every possibility and ultimately choosing the cheapest path._
+- **Why greedy loses:** _Greedy only considers local decsions while the optimal solution can later produce cheapper routes by making decsions for routes later, considering every possibility, and ultimately choosing the cheapest path._
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _The algorithm must expolor every order possible that ultimately chooses the route with the cheapest cost possible._
+- _The algorithm must explore every order possible that ultimately chooses the route with the cheapest cost possible._
 
 ---
 
@@ -149,7 +149,7 @@ _Having the correct shortest-path is needed because the route planner need accur
 > Two bullets.
 
 - **Worst-case number of orders considered:** _k!_
-- **Why:** _This would be the worst-case causing the search compute the cost for every possible order of the relics._
+- **Why:** _This would be the worst-case, causing the search to compute the cost for every possible order of the relics._
 
 ---
 
@@ -160,8 +160,8 @@ _Having the correct shortest-path is needed because the route planner need accur
 > Three bullets.
 
 - **What is tracked:** _This tracks the current shortest-path._
-- **When it is used:** _This is used when a new shortest-path is found to then remove the old relic and add the new relic which creates a new shorter path._
-- **What it allows the algorithm to skip:** _It allows the algorithm to skip over relics that already have been proven to result in a higher cost than the current shortest-path, therefore we do not have to repeatedly search through every relic._
+- **When it is used:** _This is used when a new shortest-path is found to then remove the old relic and add the new relic, which creates a new shorter path._
+- **What it allows the algorithm to skip:** _It allows the algorithm to skip over relics that have already been proven to result in a higher cost than the current shortest-path, therefore, we do not have to repeatedly search through every relic._
 
 ### Part 6b: Lower Bound Estimation
 
@@ -176,7 +176,7 @@ _Having the correct shortest-path is needed because the route planner need accur
 > One to two bullets. Explain why pruning is safe.
 
 - If the cost to the next relic is greater than the cost found previously, we can safely skip exploring this path since a shorter path cannot be found.
-- If we were to explore this path then we would be adding more to the paths cost thus it would not be optimal.
+- If we were to explore this path, then we would be adding more to the path's cost, thus it would not be optimal.
 _
 
 ---

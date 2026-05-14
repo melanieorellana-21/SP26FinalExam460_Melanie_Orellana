@@ -313,7 +313,9 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+
+    return find_optimal_route(dist_table, spawn, relics, exit_node)
 
 
 # =============================================================================
@@ -381,21 +383,5 @@ def _run_tests():
 
 
 if __name__ == "__main__":
-    #_run_tests()
-    if __name__ == "__main__":
-     dist_table = {
-        "S": {"B": 1, "C": 2, "D": 2, "T": float("inf")},
-        "B": {"B": 0, "C": 100, "D": 1, "T": 1},
-        "C": {"B": 1, "C": 0, "D": 100, "T": 1},
-        "D": {"B": 1, "C": 1, "D": 0, "T": 100},
-    }
-
-    spawn = "S"
-    relics = ["B", "C", "D"]
-    exit_node = "T"
-
-    result = find_optimal_route(dist_table, spawn, relics, exit_node)
-
-    print("Result:", result)
-    print("Expected cost: 4")
-    print("Expected order: ['B', 'D', 'C']")
+    _run_tests()
+    

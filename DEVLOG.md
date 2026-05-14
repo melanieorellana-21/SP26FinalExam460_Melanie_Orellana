@@ -24,13 +24,13 @@ _For this programming assignment, I will be splitting up the work into four diff
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Today I implemented Dijkstra and distance precomputation, I ran into a small bug in run_dijkstra as I forgot to push the new distances into the priority queue after updating the new distances. Also ran into small bugs with the initialization of the dictionary in run_dijkstra, and while I didn't think I needed to initialize sources in precompute_distances with the exit_node as well, I found it was required to do so. I also made a slight change to my README Part 2c since I realized that the analysis part of my response was incorrect._
+_Today, I implemented Dijkstra and distance precomputation. I ran into a small bug in run_dijkstra as I forgot to push the new distances into the priority queue after updating them. Also ran into small bugs with the initialization of the dictionary in run_dijkstra, and while I didn't think I needed to initialize sources in precompute_distances with the exit_node as well, I found it was required to do so. I also made a slight change to my README Part 2c since I realized that the analysis part of my response was incorrect._
 
 ---
 
 ## Entry 3 – [Date]: [Short description]
 
-_Today I implemented find_optimal_route() and _explore(). I ran into problems with the final route not updating correctly, I attempted to store min_cost and best_order seperatly but found it was better to use a mutable container which ultimatley allowed for the final route to be stored correctly. I also ran into a bug when I was storing distances in the wrong direction so instead of dist_table[current_loc][exit_node] I was doing the oppisite. Today I figured out how the backtracking would work in terms of tracking the current relic, remaining relics, visited order, and total cost. I also completed the explain_search() in torchbearer.py._
+_Today I implemented find_optimal_route() and _explore(). I ran into problems with the final route not updating correctly. I attempted to store min_cost and best_order separately, but found it was better to use a mutable container, which ultimately allowed for the final route to be stored correctly. I also ran into a bug when I was storing distances in the wrong direction, so instead of dist_table[current_loc][exit_node], I was doing the opposite. Today, I figured out how the backtracking would work in terms of tracking the current relic, remaining relics, visited order, and total cost. I also completed the explain_search() in torchbearer.py._
 
 ---
 
@@ -39,7 +39,7 @@ _Today I implemented find_optimal_route() and _explore(). I ran into problems wi
 > Required. Written after your implementation is complete. Describe what you would
 > change or improve given more time.
 
-_Your entry here._
+_If I were to have more time, I would improve the pruning strategy to accommodate larger graphs, and I would also account for additional edge cases as well. Overall, some portions of this assignment did take me longer than I would have expected, but given more time, I would implement a better strategy to improve efficiency._
 
 ---
 
@@ -49,12 +49,12 @@ _Your entry here._
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
-| Part 3: Algorithm Correctness | |
-| Part 4: Search Design | |
-| Part 5: State and Search Space | |
-| Part 6: Pruning | |
-| Part 7: Implementation | |
-| README and DEVLOG writing | |
-| **Total** | |
+| Part 1: Problem Analysis | 1 |
+| Part 2: Precomputation Design | 2 |
+| Part 3: Algorithm Correctness | 2 |
+| Part 4: Search Design | 2 |
+| Part 5: State and Search Space | 2 |
+| Part 6: Pruning | 2 |
+| Part 7: Implementation | 5 |
+| README and DEVLOG writing | 2 |
+| **Total** | 18 |
